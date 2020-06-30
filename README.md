@@ -1,12 +1,16 @@
+![Pandio Logo](https://pandio-public-assets.s3-us-west-2.amazonaws.com/pandio_225-05.png)
+
 # Apache Pulsar Python Functions
 
 The purpose of this repository is to help facilitate creating Pulsar Functions in Python.
 
 ## Requirements
 
-- Python 3.7 (2.x will require some modification for existing functions that are written in 3.7)
-- Docker
+- Python 3.7
+-- 2.x will require some modification for existing functions that are written in 3.7, new functions can be written in either version of Python
 - zip
+- tar
+- wget
 - Java 8
 
 ## Getting started
@@ -31,20 +35,22 @@ Once you create a new function, make sure you update all references in the comma
 
 1. `cd ~/pulsar-python-functions/functions`
 
-2. ```pip download \
+2. This downloads and installs the requirements for the function so that everything needed is included.
+
+```pip download \
 --only-binary :all: \
 --platform manylinux1_x86_64 \
 --python-version 37 \
 --implementation cp \
 --abi cp27m -r requirements.txt -d ./format-phone-number/deps```
 
-This downloads and installs the requirements for the function so that everything needed is included.
-
 3. `zip -r name-of-file.zip format-phone-number -x */test/*`
 
 Zip the function folder, ignoring all contents in the test folder.
 
-4. ```bin/pulsar-admin functions localrun \
+4. Runs the function in localmode on the host computer allowing quick iterations and debugging.
+
+```bin/pulsar-admin functions localrun \
   --tenant public \
   --namespace default \
   --py /path/to/pulsar-python-functions/functions/test-python-library.zip \
@@ -52,8 +58,6 @@ Zip the function folder, ignoring all contents in the test folder.
   --inputs persistent://public/default/in \
   --output persistent://public/default/out \
   --log-topic persistent://public/default/log```
-
-Runs the function in localmode on the host computer allowing quick iterations and debugging.
 
 Pay special attention to the path of the python file in `--py` to make sure it is valid, and the value of `--classname` follows the format of `filename.classname`
 
@@ -79,4 +83,4 @@ Make modifications to the python class in `new-function-folder/src/` and rename 
 
 ## Notes
 
-- As of 2.6.0, Functions written in Python do not support Schemas, even though the Python client does. Due to this, sending JSON in the messages is recommended.
+- As of 2.6.0, Functions written in Python do not support schemas, even though the Python client does. Due to this, sending JSON in the messages is recommended.
