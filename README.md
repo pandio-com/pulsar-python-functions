@@ -1,4 +1,4 @@
-![Pandio Logo](https://pandio-public-assets.s3-us-west-2.amazonaws.com/pandio_225-05.png)
+<a href="https://pandio.com" target="_blank"><img src="https://pandio-public-assets.s3-us-west-2.amazonaws.com/pandio_225-05.png" width="125" alt="Pandio Logo"></a>
 
 # Apache Pulsar Python Functions
 
