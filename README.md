@@ -1,4 +1,4 @@
-<a href="https://pandio.com" target="_blank"><img src="https://pandio-public-assets.s3-us-west-2.amazonaws.com/pandio_225-05.png" width="125" alt="Pandio Logo"></a>
+<a href="https://pandio.com"><img src="https://pandio-public-assets.s3-us-west-2.amazonaws.com/pandio_225-05.png" width="225" alt="Pandio Logo"></a>
 
 # Apache Pulsar Python Functions
 
@@ -37,12 +37,14 @@ Once you create a new function, make sure you update all references in the comma
 
 2. This downloads and installs the requirements for the function so that everything needed is included.
 
-```pip download \
+```
+pip download \
 --only-binary :all: \
 --platform manylinux1_x86_64 \
 --python-version 37 \
 --implementation cp \
---abi cp27m -r requirements.txt -d ./format-phone-number/deps```
+--abi cp27m -r requirements.txt -d ./format-phone-number/deps
+```
 
 3. `zip -r name-of-file.zip format-phone-number -x */test/*`
 
@@ -50,14 +52,16 @@ Zip the function folder, ignoring all contents in the test folder.
 
 4. Runs the function in localmode on the host computer allowing quick iterations and debugging.
 
-```bin/pulsar-admin functions localrun \
+```
+bin/pulsar-admin functions localrun \
   --tenant public \
   --namespace default \
   --py /path/to/pulsar-python-functions/functions/test-python-library.zip \
   --classname TestEtl.TestEtl \
   --inputs persistent://public/default/in \
   --output persistent://public/default/out \
-  --log-topic persistent://public/default/log```
+  --log-topic persistent://public/default/log
+```
 
 Pay special attention to the path of the python file in `--py` to make sure it is valid, and the value of `--classname` follows the format of `filename.classname`
 
