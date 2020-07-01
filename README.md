@@ -51,7 +51,7 @@ pip download \
 --platform manylinux1_x86_64 \
 --python-version 37 \
 --implementation cp \
---abi cp27m -r requirements.txt -d ./format-phone-number/deps
+--abi cp27m -r requirements.txt -d deps
 ```
 
 3. `zip -r name-of-file.zip format-phone-number -x */test/*`
