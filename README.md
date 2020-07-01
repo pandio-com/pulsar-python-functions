@@ -12,12 +12,12 @@ The purpose of this repository is to help facilitate creating Pulsar Functions i
 
 ## Requirements
 
-- Python 3.7
-    -- 2.x will require some modification for existing functions that are written in 3.7, new functions can be written in either version of Python
+- Python 3.7 (2.x will require some modification for existing functions that are written in 3.7, new functions can be written in either version of Python)
 - zip
 - tar
 - wget
 - Java 8
+- docker (optional)
 
 ## Getting started
 
@@ -30,6 +30,10 @@ Run Apache Pulsar locally by following these steps:
 3. `cd apache-pulsar-2.6.0`
 
 4. `bin/pulsar-admin standalone`
+
+If you'd prefer to use Docker, a `docker-compose.yaml` file is included. Simply run `docker-compose up` in the same folder as the yaml file.
+
+If you use Docker, you still need to perform the steps above to run the Pulsar Functions locally.
 
 ### Function Example
 
@@ -54,17 +58,34 @@ pip download \
 --abi cp27m -r requirements.txt -d deps
 ```
 
+Alternative depending on the requirements, you may have to research the options needed.
+
+```
+pip download \
+--only-binary :all: \
+--platform manylinux1_x86_64 \
+--python-version 37 -r requirements.txt -d deps
+```
+
+```
+pip download --only-binary :all: -r requirements.txt -d deps
+```
+
 3. `zip -r name-of-file.zip format-phone-number -x */test/*`
 
 Zip the function folder, ignoring all contents in the test folder.
 
-4. Runs the function in localmode on the host computer allowing quick iterations and debugging.
+4. `mv name-of-file.zip /tmp/`
+
+Move the file to a temporary location, since the next command pollutes the directory of the zip file.
+
+5. Runs the function in localmode on the host computer allowing quick iterations and debugging.
 
 ```
 bin/pulsar-admin functions localrun \
   --tenant public \
   --namespace default \
-  --py /path/to/pulsar-python-functions/functions/test-python-library.zip \
+  --py /tmp/name-of-file.zip \
   --classname TestEtl.TestEtl \
   --inputs persistent://public/default/in \
   --output persistent://public/default/out \
@@ -75,17 +96,17 @@ Pay special attention to the path of the python file in `--py` to make sure it i
 
 This command will also show error information from the uploaded function in the command output. This will be helpful in debugging.
 
-5. Install testing requirements: `pip install -r format-phone-number/test/requirements.txt`
+6. Install testing requirements: `pip install -r format-phone-number/test/requirements.txt`
 
 This makes sure the test scripts for your function can operate properly.
 
-6. Start consumer: `python format-phone-number/test/test-consumer.py`
+7. Start consumer: `python format-phone-number/test/test-consumer.py`
 
 Individual python script as a consumer created to allow flexibility editing the consumer.
 
-7. Start log consumer: `python format-phone-number/test/test-log-consumer.py`
+8. Start log consumer: `python format-phone-number/test/test-log-consumer.py`
 
-8. Start producer: `python format-phone-number/test/test-producer.py`
+9. Start producer: `python format-phone-number/test/test-producer.py`
 
 Individual python script as a producer created to allow flexibility editing the producer.
 
