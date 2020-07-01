@@ -4,7 +4,8 @@ from skmultiflow.bayes import NaiveBayes
 import json
 import numpy as np
 
-class Agrawal(Function):
+
+class NaiveBayesExample(Function):
     model = None
 
     def __init__(self):
