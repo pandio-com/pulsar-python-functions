@@ -1,2 +1,2 @@
-scikit-multiflow
-numpy
+scikit-multiflow==0.5.3
+numpy==1.18.5
