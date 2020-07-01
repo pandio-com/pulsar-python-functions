@@ -139,3 +139,6 @@ venv
 functions/*.zip
 functions/*/deps/
 *.mmdb
+
+# MAC
+.DS_Store
