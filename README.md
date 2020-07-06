@@ -10,6 +10,24 @@ Learn more about Pulsar at https://pulsar.apache.org
 
 The purpose of this repository is to help facilitate creating Pulsar Functions in Python.
 
+## Existing Functions
+
+### Dynamic Routing
+
+Based on the contents of a JSON formatted message, route the message to one or more topics.
+
+Helpful when ingesting on a single topic and needing to process messages differently based on content.
+
+### Format Phone Number
+
+Use Google's excellent [libphonenumber](https://github.com/google/libphonenumber) to format, validate, or manipulate a phone number
+in an event.
+
+### Naive Bayes Agrawal
+
+Implementation of the excellent [scikit-multiflow](https://scikit-multiflow.github.io/) to train & predict a Naive Bayes model on a stream
+of data. Data generated using an AGRAWAL generator. Watch the log consumer as the accuracy of the model increases with each event produced.
+
 ## Requirements
 
 - Python 3.7 (2.x will require some modification for existing functions that are written in 3.7, new functions can be written in either version of Python)
