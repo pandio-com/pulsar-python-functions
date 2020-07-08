@@ -32,10 +32,12 @@ class NaiveBayesExample(Function):
 
             self.model.partial_fit(X, Y)
 
-        if context.get_metrics()['user_metric_predict-count-success_count'] > 0:
-            logger.info('success rate: {0}'.format((context.get_metrics()['user_metric_predict-count-success_count'] / context.get_metrics()['user_metric_predict-count_count']) * 100))
-        if context.get_metrics()['user_metric_predict-count-failure_count'] > 0:
-            logger.info('failure rate: {0}'.format((context.get_metrics()['user_metric_predict-count-failure_count'] / context.get_metrics()['user_metric_predict-count_count']) * 100))
+        metrics = context.get_metrics()
+
+        if metrics['user_metric_predict-count-success_count'] > 0:
+            logger.info('success rate: {0}'.format((metrics['user_metric_predict-count-success_count'] / metrics['user_metric_predict-count_count']) * 100))
+        if metrics['user_metric_predict-count-failure_count'] > 0:
+            logger.info('failure rate: {0}'.format((metrics['user_metric_predict-count-failure_count'] / metrics['user_metric_predict-count_count']) * 100))
 
         arr['P'] = arr['P'].tolist()
 
