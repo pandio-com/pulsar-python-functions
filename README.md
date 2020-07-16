@@ -28,6 +28,10 @@ in an event.
 Implementation of the excellent [scikit-multiflow](https://scikit-multiflow.github.io/) to train & predict a Naive Bayes model on a stream
 of data. Data generated using an AGRAWAL generator. Watch the log consumer as the accuracy of the model increases with each event produced.
 
+### Python Schema
+
+As of 2.6.0, [Functions written in Python do not support schemas](https://apache-pulsar.slack.com/archives/C5Z4T36F7/p1593488633393600), even though the Python client does. A workaround was developed in this example.
+
 ## Requirements
 
 - Python 3.7 (2.x will require some modification for existing functions that are written in 3.7, new functions can be written in either version of Python)
@@ -142,7 +146,6 @@ You should now be able to easily build and test Apache Pulsar Python Functions!
 
 ## Notes
 
-- As of 2.6.0, [Functions written in Python do not support schemas](https://apache-pulsar.slack.com/archives/C5Z4T36F7/p1593488633393600), even though the Python client does. Due to this, sending JSON in the messages is recommended.
 - If the Pulsar function throws an exception, it will be available in the terminal output for the command with `localrun`. Additionally, `raise Exception('Hello world')` can be used inside of the `process` method for quick debugging. Don't forget about having access to the logger as well.
 
 ## Future Plans
