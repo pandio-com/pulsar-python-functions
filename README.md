@@ -111,12 +111,15 @@ bin/pulsar-admin functions localrun \
   --classname TestEtl.TestEtl \
   --inputs persistent://public/default/in \
   --output persistent://public/default/out \
-  --log-topic persistent://public/default/log
+  --log-topic persistent://public/default/log \
+  --state-storage-service-url bk://127.0.0.1:4181
 ```
 
 Pay special attention to the path of the python file in `--py` to make sure it is valid, and the value of `--classname` follows the format of `filename.classname`
 
 This command will also show error information from the uploaded function in the command output. This will be helpful in debugging.
+
+*Note: State storage service url needs to be specified when leveraging `localrun`, see https://github.com/apache/pulsar/issues/6215
 
 6. Install testing requirements: `pip install -r format-phone-number/test/requirements.txt`
 
