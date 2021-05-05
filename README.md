@@ -93,9 +93,11 @@ pip download \
 pip download --only-binary :all: -r requirements.txt -d deps
 ```
 
-3. `zip -r name-of-file.zip format-phone-number -x */test/*`
+3. `zip -r format-phone-number.zip format-phone-number -x */test/*`
 
 Zip the function folder, ignoring all contents in the test folder.
+
+**Note:** It is required that the zip file name match exactly the folder being zipped.
 
 4. `mv name-of-file.zip /tmp/`
 
